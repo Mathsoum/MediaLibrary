@@ -1,0 +1,17 @@
+<h2>Formulaire d'ajout d'une image</h2>
+
+{% if not album_list %}
+    <p>
+        Aucun album n'a encore &eacute;t&eacute; cr&eacute;&eacute;.
+        <a href="{% url 'gallery.views.album_add' %}">Cliquez ici</a>
+        pour en ajouter un d&egrave;s maintenant !
+    </p>
+{% else %}
+    <form action="{% url "gallery.views.image_add" %}"
+          enctype="multipart/form-data" 
+          method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
+{% endif %}

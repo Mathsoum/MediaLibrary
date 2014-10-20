@@ -1,0 +1,25 @@
+<h2>Liste de toutes les images t&eacute;l&eacute;vers&eacute;es jusqu'&agrave; aujourd'hui {{ date }}</h2>
+
+{% if not image_list %}
+    <p>Aucune entr&eacute;e trouv&eacute;e</p>
+{% else %}
+    <ul>
+        {% for album in album_list %}
+        {% if album.image_set.all %}
+            <li><a href="{% url 'gallery.views.album_detail' album.slug %}">{{ album.title }}</a><br />
+                <ul>
+                {% for image in album.image_set.all %}
+                    <li>
+                       <a href="{{ MEDIA_URL }}{{ image.original }}">
+                          {{ MEDIA_URL }}{{ image.original }}
+                       </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+{% endif %}
+
+

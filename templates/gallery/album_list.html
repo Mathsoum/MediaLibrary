@@ -1,0 +1,14 @@
+<h2>Liste de tous les albums ajout&eacute;s</h2>
+
+{% if album_list %}
+    <ul>
+        {% for entry in album_list %}
+            <li>
+                <a href="{% url 'gallery.views.album_detail' entry.slug %}">{{ entry.title }}</a> :
+                {{ entry.description|truncatechars_html:20 }}
+            </li>
+        {% endfor %}
+        </ul>
+{% else %}
+    <p>Aucune entr&eacute;e trouv&eacute;e</p>
+{% endif %} 

@@ -1,0 +1,16 @@
+<h2>Album "{{ album.title }}"</h2>
+
+<p>{{ album.description }}</p>
+
+{% if not album.image_set.all %}
+    <p>Aucune photo n'a encore &eacute;t&eacute; ajout&eacute;e &agrave; cet album.</p>
+{% else %}
+    <p>Liste des photos dans cet album :</p>
+    <ul>
+    {% for image in album.image_set.all %}
+        <li>
+            <a href='{{ MEDIA_URL }}{{ image.original }}'>{{ MEDIA_URL }}{{ image.original }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
