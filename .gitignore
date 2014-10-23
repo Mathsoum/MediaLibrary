@@ -56,3 +56,4 @@ target/
 # LiClipse files
 .project
 *.pydevproject
+db.sqlite3

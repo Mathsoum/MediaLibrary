@@ -1,3 +1,6 @@
+{% extends "gallery/base_template.html" %}
+{% block body %}
+
 <h2>Album "{{ album.title }}"</h2>
 
 <p>{{ album.description }}</p>
@@ -13,4 +16,20 @@
         </li>
     {% endfor %}
     </ul>
+    
+    <div class='galleria'></div>
+    
+    <script>
+        {% load staticfiles %}
+        Galleria.loadTheme("{% static 'galleria/themes/classic/galleria.classic.min.js' %}");
+        var data = {{ album.get_images_as_json|safe }}
+        Galleria.configure({
+            transition: 'fade',
+            imageCrop: false,
+            lightbox: true
+        });
+        Galleria.run('.galleria', { dataSource: data });
+    </script>
 {% endif %}
+
+{% endblock %}

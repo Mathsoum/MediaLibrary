@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from django.conf.global_settings import MEDIA_ROOT, TEMPLATE_DIRS,\
-    TEMPLATE_CONTEXT_PROCESSORS
+    TEMPLATE_CONTEXT_PROCESSORS, STATICFILES_DIRS
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -91,7 +91,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-MEDIA_ROOT = "C:\\Users\\Mathieu SOUM\\Documents\\LiClipse Workspace\\MediaLibrary\\media"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 MEDIA_URL = "/media/"
 
@@ -103,4 +103,5 @@ TEMPLATE_DIRS = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+STATIC_ROOT = '/home/msoum/Documents/LiClipse Workspace/MediaLibrary/static'
 STATIC_URL = '/static/'
