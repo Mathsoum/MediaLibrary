@@ -19,7 +19,14 @@ def image_add(request):
             form.save()
             return redirect('gallery.views.image_list', permanent=True)
     else:
-        form = ImageForm()
+        album_slug = request.GET.get('album_slug', '__')
+        if album_slug == '__':
+            print("Classic form")
+            form = ImageForm()
+        else:
+            album = Album.objects.get(slug=album_slug)
+            print("album : %s // album slug : %s" % (album_slug, album_slug))
+            form = ImageForm(initial={'album': album}) # Album.objects.get(slug=album_slug).title
         
     return render(request, 'gallery/image_add.html', locals())
 

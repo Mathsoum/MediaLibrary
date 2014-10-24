@@ -5,6 +5,8 @@
 
 <p>{{ album.description }}</p>
 
+<p><a href="{% url 'gallery.views.image_add' %}?album_slug={{ album.slug }}">Ajouter une image</a></p>
+
 {% if not album.image_set.all %}
     <p>Aucune photo n'a encore &eacute;t&eacute; ajout&eacute;e &agrave; cet album.</p>
 {% else %}
