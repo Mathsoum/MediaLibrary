@@ -57,3 +57,6 @@ target/
 .project
 *.pydevproject
 db.sqlite3
+
+# DB migrations
+*/migrations/
