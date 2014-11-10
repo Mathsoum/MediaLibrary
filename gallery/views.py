@@ -1,5 +1,5 @@
 from gallery.forms import ImageForm, AlbumForm
-# from gallery.utils import to_thumbnail, to_regular, to_hd, to_ImageField
+from gallery.utils import to_thumbnail#, to_regular, to_hd, to_ImageField
 from django.shortcuts import render, redirect, get_object_or_404
 from gallery.models import Album, Image
 from django.utils.text import slugify
@@ -16,8 +16,11 @@ def image_add(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES,)
         if form.is_valid():
-            form.save()
-            return redirect('gallery.views.image_list', permanent=True)
+            image_instance = form.save()
+#             image_instance.title += "__modified" # This was a test, may be removed
+            image_instance.thumbnail = to_thumbnail(image_instance.original)
+            image_instance.save()
+            return redirect('gallery.views.image_list')
     else:
         album_slug = request.GET.get('album_slug', '__')
         if album_slug == '__':
@@ -25,10 +28,15 @@ def image_add(request):
             form = ImageForm()
         else:
             album = Album.objects.get(slug=album_slug)
-            print("album : %s // album slug : %s" % (album_slug, album_slug))
-            form = ImageForm(initial={'album': album}) # Album.objects.get(slug=album_slug).title
+#             print("album : %s // album slug : %s" % (album_slug, album_slug))
+            form = ImageForm(initial={'album': album})
         
     return render(request, 'gallery/image_add.html', locals())
+
+def image_del(request, album_slug, image_id):
+        album = get_object_or_404(Album, slug=album_slug)
+        album.image_set.filter(id=image_id).delete()
+        return redirect('gallery.views.album_detail', slug=album_slug)
 
 def album_list(request):
     album_list = Album.objects.all()
@@ -42,7 +50,7 @@ def album_add(request):
             new_album = form.save(commit=False)
             new_album.slug = slugify(new_album.title)
             new_album.save()
-            return redirect('gallery.views.album_list', permanent=True)
+            return redirect('gallery.views.album_list')
             
     else:
         form = AlbumForm()

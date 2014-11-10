@@ -1,5 +1,7 @@
 <h2>Liste de tous les albums ajout&eacute;s</h2>
 
+<a href="{% url 'gallery.views.album_add' %}">Cr&eacute;er un nouvel album</a>
+
 {% if album_list %}
     <ul>
         {% for entry in album_list %}

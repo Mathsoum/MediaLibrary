@@ -10,8 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from django.conf.global_settings import MEDIA_ROOT, TEMPLATE_DIRS,\
-    TEMPLATE_CONTEXT_PROCESSORS, STATICFILES_DIRS
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -91,7 +90,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 MEDIA_URL = "/media/"
 

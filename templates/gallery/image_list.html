@@ -11,7 +11,7 @@
                 {% for image in album.image_set.all %}
                     <li>
                        <a href="{{ MEDIA_URL }}{{ image.original }}">
-                          {{ MEDIA_URL }}{{ image.original }}
+                          {{ image.title }}
                        </a>
                     </li>
                 {% endfor %}

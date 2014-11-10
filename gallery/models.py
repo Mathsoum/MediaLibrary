@@ -35,7 +35,7 @@ class Image(models.Model):
     
     original = models.ImageField(upload_to="original/")
 #     image = models.ImageField(upload_to="regular/", editable=False)
-#     thumbnail = models.ImageField(upload_to="thumbnail/", editable=False)
+    thumbnail = models.ImageField(upload_to="thumbnail/", editable=False)
 #     big = models.ImageField(upload_to="1080p/", editable=False)
 #     layer = models.CharField(max_length=256, default="")
     

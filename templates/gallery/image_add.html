@@ -7,9 +7,9 @@
         pour en ajouter un d&egrave;s maintenant !
     </p>
 {% else %}
-    <form action="{% url "gallery.views.image_add" %}"
+    <form action="{% url 'gallery.views.image_add' %}"
           enctype="multipart/form-data" 
-          method="post">
+          method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Submit" />
