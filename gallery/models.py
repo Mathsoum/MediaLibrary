@@ -1,7 +1,6 @@
 from django.db import models
 from MediaLibrary.settings import MEDIA_URL
 import json
-from django.template.defaultfilters import truncatechars
 
 # Create your models here.
     
@@ -21,11 +20,12 @@ class Album(models.Model):
                     "image": MEDIA_URL + image.original.name,
                     "title": image.title,
                     "description": image.description,
+                    "thumbnail": image.thumbnail
 #                     "layer": ("<h3>%s</h3>\n<p>%s</p>" % (image.title, truncatechars(image.description, 25))),
                 }
             )
             
-        print("Raw data : %s" % raw_data)
+        print("Raw data : %s" % json.dumps(raw_data, indent=4, sort_keys=True))
         
         return json.dumps(raw_data)
     
@@ -35,7 +35,7 @@ class Image(models.Model):
     
     original = models.ImageField(upload_to="original/")
 #     image = models.ImageField(upload_to="regular/", editable=False)
-    thumbnail = models.ImageField(upload_to="thumbnail/", editable=False)
+    thumbnail = models.ImageField(editable=False)
 #     big = models.ImageField(upload_to="1080p/", editable=False)
 #     layer = models.CharField(max_length=256, default="")
     

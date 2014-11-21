@@ -17,7 +17,6 @@ def image_add(request):
         form = ImageForm(request.POST, request.FILES,)
         if form.is_valid():
             image_instance = form.save()
-#             image_instance.title += "__modified" # This was a test, may be removed
             image_instance.thumbnail = to_thumbnail(image_instance.original)
             image_instance.save()
             return redirect('gallery.views.image_list')

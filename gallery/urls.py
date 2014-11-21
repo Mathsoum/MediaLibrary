@@ -1,6 +1,4 @@
 from django.conf.urls import patterns, url
-from django.views.generic.list import ListView
-from gallery.models import Image
 
 urlpatterns = patterns('gallery.views',
     url(r'^$', 'album_list'),
