@@ -63,3 +63,6 @@ db.sqlite3
 
 # DB migrations
 */migrations/
+
+# PyCharm
+.idea
