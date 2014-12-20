@@ -2,9 +2,9 @@
 
 <a href="{% url 'gallery.views.album_add' %}">Cr&eacute;er un nouvel album</a>
 
-{% if album_list %}
+{% if album_lst %}
     <ul>
-        {% for entry in album_list %}
+        {% for entry in album_lst %}
             <li>
                 <a href="{% url 'gallery.views.album_detail' entry.slug %}">{{ entry.title }}</a> :
                 {{ entry.description|truncatechars_html:20 }}

@@ -1,6 +1,6 @@
 <h2>Formulaire de cr&eacute;ation d'une album</h2>
 
-<form action="{% url "gallery.views.album_add" %}" method="post">
+<form action="{% url 'gallery.views.album_add' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit" />

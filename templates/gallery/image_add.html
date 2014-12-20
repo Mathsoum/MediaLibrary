@@ -1,6 +1,6 @@
 <h2>Formulaire d'ajout d'une image</h2>
 
-{% if not album_list %}
+{% if not album_lst %}
     <p>
         Aucun album n'a encore &eacute;t&eacute; cr&eacute;&eacute;.
         <a href="{% url 'gallery.views.album_add' %}">Cliquez ici</a>
