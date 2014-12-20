@@ -95,12 +95,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 MEDIA_URL = "/media/"
 
 TEMPLATE_DIRS = (
-    "MediaLibrary/templates/",
+    "templates/",
 )
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_ROOT = '/home/msoum/Documents/LiClipse Workspace/MediaLibrary/static'
+STATIC_ROOT = 'gallery/static'
 STATIC_URL = '/static/'
