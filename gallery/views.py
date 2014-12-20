@@ -1,5 +1,5 @@
 from gallery.forms import ImageForm, AlbumForm
-from gallery.utils import to_thumbnail#, to_regular, to_hd, to_ImageField
+from gallery.utils import create_thumbnail#, to_regular, to_hd, to_ImageField
 from django.shortcuts import render, redirect, get_object_or_404
 from gallery.models import Album, Image
 from django.utils.text import slugify
@@ -17,9 +17,9 @@ def image_add(request):
         form = ImageForm(request.POST, request.FILES,)
         if form.is_valid():
             image_instance = form.save()
-            image_instance.thumbnail = to_thumbnail(image_instance.original)
+            image_instance.thumbnail = create_thumbnail(image_instance)
             image_instance.save()
-            return redirect('gallery.views.image_list')
+            return redirect('gallery.views.album_detail', image_instance.album.slug)
     else:
         album_slug = request.GET.get('album_slug', '__')
         if album_slug == '__':
