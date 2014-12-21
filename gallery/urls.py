@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns('gallery.views',
-    url(r'^$', 'album_list'),
+    url(r'^$', 'index'),
     
     url(r'^image/$', 'image_list', name="List images"),
     url(r'^image/add/$', 'image_add', name='Add image'),
