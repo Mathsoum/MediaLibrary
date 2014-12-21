@@ -6,6 +6,11 @@ from django.utils.text import slugify
 
 # Create your views here.
 
+
+def index(request):
+    return render(request, 'gallery/index.html')
+
+
 def image_list(request):
     album_lst = Album.objects.all()
     image_lst = Image.objects.all()
