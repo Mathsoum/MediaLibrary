@@ -1,8 +1,8 @@
 {% extends "global/main.html" %}
 {% block body %}
 
-<h2>Album "{{ album.title }}"</h2>
-<a href="{% url 'gallery.views.album_list' %}">Retour &agrave; la liste des albums</a>
+<h1>Album "{{ album.title }}"</h1>
+<a href="{% url 'gallery.views.album_list' %}" class="btn btn-default">Retour &agrave; la liste des albums</a>
 
 <p>{{ album.description }}</p>
 

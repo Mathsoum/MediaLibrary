@@ -1,16 +1,19 @@
-<h2>Liste de tous les albums ajout&eacute;s</h2>
+{% extends "global/main.html" %}
+{% block body %}
 
-<a href="{% url 'gallery.views.album_add' %}">Cr&eacute;er un nouvel album</a>
+<h1>Liste de tous les albums ajout&eacute;s</h1>
+
+<a href="{% url 'gallery.views.album_add' %}" class="btn btn-primary btn" role="button">Cr&eacute;er un nouvel album</a>
 
 {% if album_lst %}
-    <ul>
+    <div class="container" style="margin-top: 20px">
         {% for entry in album_lst %}
-            <li>
                 <a href="{% url 'gallery.views.album_detail' entry.slug %}">{{ entry.title }}</a> :
-                {{ entry.description|truncatechars_html:20 }}
-            </li>
+                <p>{{ entry.description|truncatechars_html:20 }}</p>
         {% endfor %}
-        </ul>
+    </div>
 {% else %}
     <p>Aucune entr&eacute;e trouv&eacute;e</p>
-{% endif %} 
+{% endif %}
+
+{% endblock %}
