@@ -1,10 +1,22 @@
 {% extends "global/main.html" %}
 {% block body %}
 
-<h1>Album "{{ album.title }}"</h1>
-<a href="{% url 'gallery.views.album_list' %}" class="btn btn-default">Retour &agrave; la liste des albums</a>
+<h1>{{ album.title }}</h1>
+<h2>{{ album.description }}</h2>
 
-<p>{{ album.description }}</p>
+<div class="btn-toolbar" role="toolbar" aria-label="...">
+    <div class="btn-group" role="group" aria-label="...">
+        <a href="{% url 'gallery.views.album_list' %}" class="btn btn-default">Retour &agrave; la liste des albums</a><!-- Single button -->
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                Acc&egrave;s direct à un album <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Here comes the album list...</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <p><a href="{% url 'gallery.views.image_add' %}?album_slug={{ album.slug }}">Ajouter une image</a></p>
 
@@ -16,7 +28,9 @@
     {% for image in album.image_set.all %}
         <li>
             <a href='{{ MEDIA_URL }}{{ image.original }}'>{{ image.title }}</a>
-            <a href="{% url 'gallery.views.image_del' album.slug image.id %}">Delete</a>
+            <a href="{% url 'gallery.views.image_del' album.slug image.id %}">
+                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+            </a>
         </li>
     {% endfor %}
     </ul>
