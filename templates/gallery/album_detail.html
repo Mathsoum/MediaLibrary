@@ -4,50 +4,61 @@
 <h1>{{ album.title }}</h1>
 <h2>{{ album.description }}</h2>
 
-<div class="btn-toolbar" role="toolbar" aria-label="...">
-    <div class="btn-group" role="group" aria-label="...">
-        <a href="{% url 'gallery.views.album_list' %}" class="btn btn-default">Retour &agrave; la liste des albums</a><!-- Single button -->
-        <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                Acc&egrave;s direct à un album <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Here comes the album list...</a></li>
-            </ul>
+<div class="container">
+    <div class="btn-toolbar" role="toolbar" aria-label="...">
+        <div class="btn-group" role="group" aria-label="...">
+            <a href="{% url 'gallery.views.album_list' %}" class="btn btn-default">Retour &agrave; la liste des albums</a>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+                        {% if album_lst.size < 2 %}disabled="disabled"{% endif %}>
+                    Acc&egrave;s direct à un album <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    {% for it in album_lst %}
+                        {% if it != album %}
+                            <li><a href="{% url 'gallery.views.album_detail' it.slug %}">{{ it.title }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
-<p><a href="{% url 'gallery.views.image_add' %}?album_slug={{ album.slug }}">Ajouter une image</a></p>
+<div class="container" style="margin-top: 42px">
+    <a href="{% url 'gallery.views.image_add' %}?album_slug={{ album.slug }}">Ajouter une image</a>
+</div>
 
-{% if not album.image_set.all %}
-    <p>Aucune photo n'a encore &eacute;t&eacute; ajout&eacute;e &agrave; cet album.</p>
-{% else %}
-    <p>Liste des photos dans cet album :</p>
-    <ul>
-    {% for image in album.image_set.all %}
-        <li>
-            <a href='{{ MEDIA_URL }}{{ image.original }}'>{{ image.title }}</a>
-            <a href="{% url 'gallery.views.image_del' album.slug image.id %}">
-                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-            </a>
-        </li>
-    {% endfor %}
-    </ul>
-    
-    <div class='galleria'></div>
-    
-    <script>
-        {% load staticfiles %}
-        Galleria.loadTheme("{% static 'galleria/themes/classic/galleria.classic.min.js' %}");
-        var data = {{ album.get_images_as_json|safe }}
-        Galleria.configure({
-            transition: 'fade',
-            imageCrop: false,
-            lightbox: true
-        });
-        Galleria.run('.galleria', { dataSource: data });
-    </script>
-{% endif %}
+<div class="container">
+    {% if not album.image_set.all %}
+        <p>Aucune photo n'a encore &eacute;t&eacute; ajout&eacute;e &agrave; cet album.</p>
+    {% else %}
+        <p>Liste des photos dans cet album :</p>
+        <ul>
+        {% for image in album.image_set.all %}
+            <li>
+                <a href='{{ MEDIA_URL }}{{ image.original }}'>{{ image.title }}</a>
+                <a href="{% url 'gallery.views.image_del' album.slug image.id %}">
+                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+
+        <div class='galleria'></div>
+
+        <script>
+            {% load staticfiles %}
+            Galleria.loadTheme("{% static 'galleria/themes/classic/galleria.classic.min.js' %}");
+            var data = {{ album.get_images_as_json|safe }}
+            Galleria.configure({
+                transition: 'fade',
+                imageCrop: false,
+                lightbox: true
+            });
+            Galleria.run('.galleria', { dataSource: data });
+        </script>
+    {% endif %}
+</div>
 
 {% endblock %}

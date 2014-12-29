@@ -127,5 +127,12 @@ def album_add(request):
 
 def album_detail(request, slug):
     album = get_object_or_404(Album, slug=slug)
+    album_lst = Album.objects.all()
     return render(request, 'gallery/album_detail.html', locals())
+
+
+def album_del(request, slug):
+    album = get_object_or_404(Album, slug=slug)
+    album.delete()
+    return redirect('album_list', permanent=True)
 
