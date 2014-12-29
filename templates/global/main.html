@@ -38,12 +38,13 @@
                     <span class="glyphicon glyphicon-remove"></span> Logout
                 </a>
             {% else %}
-                <form class="navbar-form navbar-right" role="form">
+                <form action="{% url 'gallery.views.connexion' %}" method="post" class="navbar-form navbar-right" role="form">
+                    {% csrf_token %}
                     <div class="form-group">
-                        <input type="text" placeholder="Email" class="form-control">
+                        <input type="text" placeholder="Username" name="username" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="password" placeholder="Password" class="form-control">
+                        <input type="password" placeholder="Password" name="password" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-success">
                         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Log in

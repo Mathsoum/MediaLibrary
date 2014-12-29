@@ -43,20 +43,27 @@ def user_add(request):
 
 
 def connexion(request):
-    error = False
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user:
+            login(request, user)
+            messages.success(request, 'Welcome %s. You are now logged in =)' % user.username)
+        else:
+            messages.error(request, 'Authentication failed with this username and password.')
+            return redirect('Connexion view')
 
+    return redirect('index')
+
+
+def connexion_view(request):
     if request.method == "POST":
         form = ConnexionForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
-            user = authenticate(username=username, password=password)
-            if user:
-                login(request, user)
-                messages.success(request, 'Welcome %s. You are now logged in =)' % user.username)
-                return redirect('index', permanent=True)
-            else:
-                error = True
+            connexion(request)
     else:
         form = ConnexionForm()
 
