@@ -13,14 +13,30 @@
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
 
-<form action="{% url 'gallery.views.user_add' %}" method="post" class="form form-horizontal">
-    {% csrf_token %}
-    {% bootstrap_form form layout='horizontal' %}
-    {% buttons %}
-        <button type="submit" class="btn btn-success">
-          Submit
-        </button>
-    {% endbuttons %}
-</form>
+<div class="container">
+    <form action="{% url 'gallery.views.user_add' %}" method="post" class="form form-horizontal">
+        {% csrf_token %}
+        <div class="form-group">
+            {% bootstrap_field form.username layout='horizontal' %}
+        </div>
+        <div class="form-group">
+            {% bootstrap_field form.first_name layout='horizontal' %}
+        </div>
+        <div class="form-group">
+            {% bootstrap_field form.last_name layout='horizontal' %}
+        </div>
+        <div class="form-group">
+            {% bootstrap_field form.email layout='horizontal' %}
+        </div>
+        <div class="form-group">
+            {% bootstrap_field form.password layout='horizontal' %}
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2">
+                <input type="submit" class="btn btn-success form-horizontal" value="Submit"/>
+            </div>
+        </div>
+    </form>
+</div>
 
 {% endblock %} {# body #}
