@@ -1,0 +1,26 @@
+{% extends "global/main.html" %}
+{% block body %}
+
+<h1>Nouveau compte</h1>
+<h2 style="margin-bottom: 50px">Remplissez le formulaire ci-dessous</h2>
+
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<form action="{% url 'gallery.views.user_add' %}" method="post" class="form form-horizontal">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' %}
+    {% buttons %}
+        <button type="submit" class="btn btn-success">
+          Submit
+        </button>
+    {% endbuttons %}
+</form>
+
+{% endblock %} {# body #}

@@ -1,0 +1,29 @@
+{% extends 'global/main.html' %}
+{% block body %}
+
+<h1>Se connecter</h1>
+
+{% if error %}
+<p><strong>Utilisateur inexistant ou mauvais de mot de passe.</strong></p>
+{% endif %}
+
+{% if user.is_authenticated %}
+Vous êtes connecté, {{ user.username }} !
+{% else %}
+
+  {# Load the tag library #}
+  {% load bootstrap3 %}
+
+  {# Display a form #}
+  <form action="#" method="post" class="form form-horizontal">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' %}
+    {% buttons %}
+      <button type="submit" class="btn btn-primary">
+        {% bootstrap_icon "star" %} Submit
+      </button>
+    {% endbuttons %}
+  </form>
+{% endif %}
+
+{% endblock %}
