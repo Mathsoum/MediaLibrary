@@ -52,7 +52,7 @@ def connexion(request):
             messages.success(request, 'Welcome %s. You are now logged in =)' % user.username)
         else:
             messages.error(request, 'Authentication failed with this username and password.')
-            return redirect('Connexion view')
+            return redirect('connexion_view')
 
     return redirect('index')
 
@@ -63,7 +63,14 @@ def connexion_view(request):
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
-            connexion(request)
+            user = authenticate(username=username, password=password)
+            if user:
+                login(request, user)
+                messages.success(request, 'Welcome %s. You are now logged in =)' % user.username)
+            else:
+                messages.error(request, 'Authentication failed with this username and password.')
+                return redirect('connexion_view')
+
     else:
         form = ConnexionForm()
 
