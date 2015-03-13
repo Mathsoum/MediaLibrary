@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'MediaLibrary.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'media_library_db',
-        'USER': 'django',
-        'PASSWORD': 'django',
-        'HOST': '127.0.0.1',
+        'NAME': 'dori3mr2sbk9u',
+        'USER': 'aikakdsrnomtxt',
+        'PASSWORD': '_7uFOhlO2acqY2huHi7AhXWftn',
+        'HOST': 'ec2-54-163-250-41.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
