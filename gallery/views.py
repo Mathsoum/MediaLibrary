@@ -29,8 +29,8 @@ def user_add(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
-            first_name = form.cleaned_data['firstName']
-            last_name = form.cleaned_data['lastName']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             User.objects.create_user(username, email, password, first_name=first_name, last_name=last_name)
