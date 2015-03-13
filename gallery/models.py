@@ -47,11 +47,6 @@ class Image(models.Model):
 
     def get_json_data(self):
         data = {
-            'image': ("%s%s" % MEDIA_URL, self.original.path),
-            #             'thumbnail': ("%s%s" % MEDIA_URL, self.original.path),
-            #             'big': ("%s%s" % MEDIA_URL, self.original.path),
-
-            'title': ("%s" % self.title),
             'description': ("%s" % self.description),
 
             #             'layer': ("%s" % self.layer.name),

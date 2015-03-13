@@ -12,9 +12,4 @@ urlpatterns = patterns('gallery.views',
     url(r'^album/add/$', 'album_add', name='album_add'),
     url(r'^album/del/(?P<slug>.*)/$', 'album_del', name='album_del'),
     url(r'^album/(?P<slug>.*)/$', 'album_detail', name='album_detail'),
-
-    url(r'^user/add$', 'user_add', name='user_add'),
-    url(r'^connexion$', 'connexion_view', name='connexion_view'),
-    url(r'^login$', 'connexion', name='connexion'),
-    url(r'^logout$', 'logout_view', name='logout'),
 )

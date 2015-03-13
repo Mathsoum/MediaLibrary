@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     url(r'^$', 'gallery.views.index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^gallery/', include('gallery.urls')),
+    url(r'^users/', include('users.urls')),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
