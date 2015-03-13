@@ -28,11 +28,11 @@ def user_add(request):
             password = form.cleaned_data['password']
             User.objects.create_user(username, email, password, first_name=first_name, last_name=last_name)
             messages.success(request, 'Account created. You can now log in.')
-            return render(request, 'gallery/index.html', locals())
+            return render(request, 'global/index.html', locals())
     else:
         form = UserCreationForm()
 
-    return render(request, 'gallery/user_add.html', locals())
+    return render(request, 'users/user_add.html', locals())
 
 
 def connexion(request):
@@ -67,4 +67,4 @@ def connexion_view(request):
     else:
         form = ConnexionForm()
 
-    return render(request, 'gallery/connexion.html', locals())
+    return render(request, 'users/connexion.html', locals())
