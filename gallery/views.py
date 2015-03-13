@@ -8,7 +8,8 @@ from django.utils.text import slugify
 
 
 def index(request):
-    return render(request, 'gallery/index.html')
+    album_set = Album.objects.all()
+    return render(request, 'gallery/index.html', locals())
 
 
 def image_list(request):

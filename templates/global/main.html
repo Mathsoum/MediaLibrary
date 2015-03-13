@@ -38,7 +38,7 @@
                     <span class="glyphicon glyphicon-remove"></span> Logout
                 </a>
             {% else %}
-                <form action="{% url 'users.views.connexion' %}" method="post" class="navbar-form navbar-right" role="form">
+                <form action="{% url 'users.views.connexion_navbar' %}" method="post" class="navbar-form navbar-right" role="form">
                     {% csrf_token %}
                     <div class="form-group">
                         <input type="text" placeholder="Username" name="username" class="form-control">
@@ -49,7 +49,7 @@
                     <button type="submit" class="btn btn-success">
                         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Log in
                     </button>
-                    <a href="{% url 'users.views.user_add' %}" class="btn btn-success">
+                    <a href="{% url 'users.views.add' %}" class="btn btn-success">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Sign up
                     </a>
                 </form>

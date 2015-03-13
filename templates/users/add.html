@@ -14,7 +14,7 @@
 {% bootstrap_messages %}
 
 <div class="container">
-    <form action="{% url 'gallery.views.user_add' %}" method="post" class="form form-horizontal">
+    <form action="{% url 'users.views.add' %}" method="post" class="form form-horizontal">
         {% csrf_token %}
         <div class="form-group">
             {% bootstrap_field form.username layout='horizontal' %}

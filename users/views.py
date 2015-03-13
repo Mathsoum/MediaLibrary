@@ -15,7 +15,7 @@ def logout_view(request):
     return redirect('index', permanent=True)
 
 
-def user_add(request):
+def add(request):
     error = False
 
     if request.method == "POST":
@@ -32,10 +32,10 @@ def user_add(request):
     else:
         form = UserCreationForm()
 
-    return render(request, 'users/user_add.html', locals())
+    return render(request, 'users/add.html', locals())
 
 
-def connexion(request):
+def connexion_navbar(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
